@@ -13,6 +13,14 @@ class RunArray
     font_array.push(build_object(get_last_index, ending, font))
   end
 
+  def get_font_for_index(index)
+    font_array.each do |font_ranges|
+      return font_ranges[:font] if index.between?(font_ranges[:starting_index], font_ranges[:ending_index])
+    end
+
+    nil
+  end
+
   private
 
   def build_object(starting, ending, font)

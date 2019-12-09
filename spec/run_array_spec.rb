@@ -50,6 +50,20 @@ RSpec.describe RunArray do
     end
   end
 
+  describe '#get_font_for_index' do
+    before(:each) do
+      subject.add_run(0, 255, font)
+    end
+
+    it 'should return the font for a given range' do
+      expect(subject.get_font_for_index(5)).to eq(font)
+    end
+
+    it 'should return nil if index out of range' do
+      expect(subject.get_font_for_index(500)).to eq(nil)
+    end
+  end
+
   describe '#build_object' do
     it 'should return the correct object' do
       expect(subject.send(:build_object, 1, 2, font)).to eq({starting_index: 1, ending_index: 2, font: font})

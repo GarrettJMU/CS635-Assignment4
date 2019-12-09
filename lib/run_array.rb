@@ -24,6 +24,10 @@ class RunArray
   end
 
   def get_last_index
-    font_array.present? ? (self.last.starting_index + 1) : 0
+    if font_array.length == 0
+      0
+    else
+      font_array.last[:ending_index] + 1
+    end
   end
 end

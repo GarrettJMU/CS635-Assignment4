@@ -2,9 +2,12 @@ require 'spec_helper'
 require_relative '../lib/run_array'
 
 RSpec.describe RunArray do
+
+  subject { described_class.new }
+
   describe '#initialize' do
-      it 'should pass' do
-      expect(true).to eq(true)
+    it 'should create an empty array' do
+      expect(subject.font_array).to eq([])
     end
   end
 

@@ -2,11 +2,10 @@ require 'spec_helper'
 require_relative '../lib/character'
 
 RSpec.describe Character do
-  subject { Character.new }
-
   describe '#initialize' do
-    it 'should pass tests' do
-      expect(true).to eq(true)
+    it 'should accept the unicode as a class variable' do
+      subject = described_class.new('foo')
+      expect(subject.unicode_point).to eq('foo')
     end
   end
 end

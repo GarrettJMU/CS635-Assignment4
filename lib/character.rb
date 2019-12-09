@@ -1,5 +1,7 @@
 class Character
+  attr_reader :unicode_point
 
-  def initialize
+  def initialize(unicode_point)
+    @unicode_point = unicode_point
   end
 end

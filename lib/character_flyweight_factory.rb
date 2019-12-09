@@ -1,3 +1,5 @@
+require_relative('./character_flyweight')
+
 class CharacterFlyweightFactory
   attr_accessor :unicodes
 
@@ -10,8 +12,9 @@ class CharacterFlyweightFactory
       unicode = unicodes[unicode]
     else
       unicode = CharacterFlyweight.new(unicode)
-      unicodes[unicode] = unicode.find_character
+      unicodes[unicode.unicode_point] = unicode.find_character
     end
+
     unicode
   end
 end

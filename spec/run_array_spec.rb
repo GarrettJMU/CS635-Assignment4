@@ -4,7 +4,7 @@ require_relative '../lib/run_array'
 RSpec.describe RunArray do
 
   subject { described_class.new }
-  let(:font) {double('font')}
+  let(:font) { double('font') }
 
   describe '#initialize' do
     it 'should create an empty array' do
@@ -14,10 +14,22 @@ RSpec.describe RunArray do
 
   describe '#add_run' do
     it 'should add first correctly' do
-      subject.add_run(0,255, font)
+      subject.add_run(0, 255, font)
 
-      expect(subject.font_array).to eq([{starting_index: 0, ending_index: 255, font: font}])
+      expect(subject.font_array).to eq([{ starting_index: 0, ending_index: 255, font: font }])
     end
+
+    it 'should add more correctly' do
+      subject.add_run(0, 255, font)
+      subject.add_run(256, 500, font)
+
+      expect(subject.font_array.length).to eq(2)
+      expect(subject.font_array).to eq([
+                                         { starting_index: 0, ending_index: 255, font: font },
+                                         { starting_index: 256, ending_index: 500, font: font }
+                                       ])
+    end
+
   end
 
   describe '#append_run' do

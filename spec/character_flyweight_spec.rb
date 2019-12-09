@@ -1,7 +1,7 @@
 require 'spec_helper'
-require_relative '../lib/character'
+require_relative '../lib/character_flyweight'
 
-RSpec.describe Character do
+RSpec.describe CharacterFlyweight do
   describe '#initialize' do
     it 'should accept the unicode as a class variable' do
       subject = described_class.new('foo')

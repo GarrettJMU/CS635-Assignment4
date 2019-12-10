@@ -14,8 +14,14 @@ RSpec.describe WordProcessor do
   end
 
   describe '#calculate_size' do
-    subject = described_class.new
-    expect(subject.calculate_size).to eq({})
+    let(:memory_profiler) {double('memory_profiler')}
+    it 'should call gem to execute' do
+      subject = described_class.new
+      expect(MemoryProfiler).to receive(:report).and_return(memory_profiler)
+      expect(memory_profiler).to receive(:pretty_print)
+
+      subject.calculate_size
+    end
   end
 
   describe '#generate_random_unicode_point_array' do

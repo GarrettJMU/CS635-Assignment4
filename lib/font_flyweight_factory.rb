@@ -1,3 +1,5 @@
+require_relative './font'
+
 class FontFlyweightFactory
   attr_reader :fonts
 

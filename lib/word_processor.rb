@@ -8,7 +8,7 @@ class WordProcessor
   def initialize
     @strategy = FlyweightStrategy.new
     @run_array = RunArray.new
-    @unicode_values = generate_random_unicode_point_array(200)
+    @unicode_values = []
   end
 
   def calculate_size
@@ -25,15 +25,5 @@ class WordProcessor
     report.pretty_print
 
     object_to_analyze
-  end
-
-  def generate_random_unicode_point_array(n)
-    run_array.append_run(100, { font_name: 'Times New Roman', font_size: 12, font_style: 'bold' })
-    run_array.append_run(150, { font_name: 'Ariel', font_size: 16, font_style: 'bold' })
-    run_array.append_run(200, { font_name: 'Times New Roman', font_size: 16 })
-
-    n.times.map do
-      rand(97..122)
-    end
   end
 end

@@ -9,7 +9,6 @@ class WordProcessor
     @strategy = FlyweightStrategy.new
     @run_array = RunArray.new
     @unicode_values = []
-
   end
 
   def calculate_size

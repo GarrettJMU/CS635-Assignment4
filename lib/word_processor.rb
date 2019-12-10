@@ -23,6 +23,8 @@ class WordProcessor
     end
 
     report.pretty_print
+
+    object_to_analyze
   end
 
   def generate_random_unicode_point_array(n)

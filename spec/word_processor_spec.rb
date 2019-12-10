@@ -22,6 +22,12 @@ RSpec.describe WordProcessor do
 
       subject.calculate_size
     end
+
+    it 'should return the object that was analyzed' do
+      subject = described_class.new
+
+      expect(subject.calculate_size.length).to eq(200)
+    end
   end
 
   describe '#generate_random_unicode_point_array' do

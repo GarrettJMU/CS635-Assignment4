@@ -12,4 +12,20 @@ RSpec.describe WordProcessor do
       expect(subject.unicode_values.length).to eq(200)
     end
   end
+
+  describe '#generate_random_unicode_point_array' do
+    it 'should set the values to only be between 97 and 122' do
+
+    end
+
+    it 'should keep creating new array sets if we want' do
+      subject = described_class.new
+      subject.unicode_values = subject.generate_random_unicode_point_array(1)
+      expect(subject.unicode_values.length).to eq(1)
+      subject.unicode_values = subject.generate_random_unicode_point_array(1000)
+      expect(subject.unicode_values.length).to eq(1000)
+    end
+
+  end
+
 end

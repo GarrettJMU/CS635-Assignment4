@@ -12,16 +12,17 @@ class CharacterAndFontFlyweightFactory
   end
 
   def get_object_for(unicode, font)
-    if font_and_characters.key?({ character: unicode, font: font })
-      character_and_font_pair = font_and_characters[unicode]
+    key = { character: unicode, font: font }
+    if font_and_characters.key?(key)
+      character_and_font_pair = font_and_characters[key]
     else
 
       character_and_font_pair = {
-        character: character_factory.get_character_for(unicode),
+        character: character_factory.get_character_for(key),
         font: font_factory.get_font_for(font[:font_name], font[:font_size], font[:font_style])
       }
 
-      font_and_characters[unicode] = character_and_font_pair
+      font_and_characters[key] = character_and_font_pair
     end
 
     character_and_font_pair

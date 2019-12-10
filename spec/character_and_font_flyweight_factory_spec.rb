@@ -14,8 +14,8 @@ RSpec.describe CharacterAndFontFlyweightFactory do
     it 'should create an empty object' do
       subject = described_class.new
       expect(subject.font_and_characters).to eq({})
-      expect(subject.font_factory).to be_instance_of(FontFlyweightFactory)
-      expect(subject.character_factory).to be_instance_of(CharacterFlyweightFactory)
+      expect(subject.font_flyweight_factory).to be_instance_of(FontFlyweightFactory)
+      expect(subject.character_flyweight_factory).to be_instance_of(CharacterFlyweightFactory)
     end
   end
 
@@ -54,9 +54,9 @@ RSpec.describe CharacterAndFontFlyweightFactory do
 
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
-        expect(subject.character_factory).to receive(:get_character_for).once.with(116).and_return(character_116)
-        expect(subject.character_factory).to receive(:get_character_for).once.with(114).and_return(character_116)
-        expect(subject.character_factory).to receive(:get_character_for).once.with(115).and_return(character_116)
+        expect(subject.character_flyweight_factory).to receive(:get_character_for).once.with(116).and_return(character_116)
+        expect(subject.character_flyweight_factory).to receive(:get_character_for).once.with(114).and_return(character_116)
+        expect(subject.character_flyweight_factory).to receive(:get_character_for).once.with(115).and_return(character_116)
 
         subject.get_object_for(font_1,114)
         subject.get_object_for(font_1,114)
@@ -74,9 +74,9 @@ RSpec.describe CharacterAndFontFlyweightFactory do
 
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
-        expect(subject.font_factory).to receive(:get_font_for).once.with(font_1[:font_name], font_1[:font_size], font_1[:font_style]).and_return(font_1_obj)
-        expect(subject.font_factory).to receive(:get_font_for).once.with(font_2[:font_name], font_2[:font_size], font_2[:font_style]).and_return(font_2_obj)
-        expect(subject.font_factory).to receive(:get_font_for).once.with(font_3[:font_name], font_3[:font_size], font_3[:font_style]).and_return(font_3_obj)
+        expect(subject.font_flyweight_factory).to receive(:get_font_for).once.with(font_1[:font_name], font_1[:font_size], font_1[:font_style]).and_return(font_1_obj)
+        expect(subject.font_flyweight_factory).to receive(:get_font_for).once.with(font_2[:font_name], font_2[:font_size], font_2[:font_style]).and_return(font_2_obj)
+        expect(subject.font_flyweight_factory).to receive(:get_font_for).once.with(font_3[:font_name], font_3[:font_size], font_3[:font_style]).and_return(font_3_obj)
 
 
         subject.get_object_for(font_1,114)

@@ -15,41 +15,51 @@ RSpec.describe FontFlyweightFactory do
     context 'when the font has not already been called' do
       it 'should create a new key in the class unicodes' do
         subject = described_class.new
-        subject.get_font_for('foo', 10)
-        expect(subject.fonts.keys).to eq([{font_name: 'foo',font_size: 10, font_style: nil}])
+        subject.get_font_for('foo', 10, 'bold')
+        expect(subject.fonts.keys).to eq([{ font_name: 'foo', font_size: 10, font_style: 'bold' }])
       end
 
-      # it 'should add more to the key value pair' do
-      #   subject = described_class.new
-      #   subject.find_character_of(116)
-      #   subject.find_character_of(114)
-      #   subject.find_character_of(115)
-      #
-      #   expect(subject.unicodes.keys).to eq([116, 114, 115])
-      #   expect(subject.unicodes[116]).to be_an_instance_of(CharacterFlyweight)
-      #   expect(subject.unicodes[114]).to be_an_instance_of(CharacterFlyweight)
-      #   expect(subject.unicodes[115]).to be_an_instance_of(CharacterFlyweight)
-      # end
+      it 'should create a new key in the class unicodes and default font style if none provided' do
+        subject = described_class.new
+        subject.get_font_for('foo', 10)
+        expect(subject.fonts.keys).to eq([{ font_name: 'foo', font_size: 10, font_style: nil }])
+      end
+
+      it 'should add more to the key value pair' do
+        subject = described_class.new
+        subject.get_font_for('foo', 10, 'bold')
+        subject.get_font_for('bar', 12)
+        subject.get_font_for('foo', 16, 'italic')
+
+        expect(subject.fonts.keys).to eq([
+                                           { font_name: 'foo', font_size: 10, font_style: 'bold' },
+                                           { font_name: 'bar', font_size: 12, font_style: nil },
+                                           { font_name: 'foo', font_size: 16, font_style: 'italic' }
+                                         ])
+        expect(subject.fonts[{ font_name: 'foo', font_size: 10, font_style: 'bold' }]).to be_an_instance_of(FontFlyweight)
+        expect(subject.fonts[{ font_name: 'bar', font_size: 12, font_style: nil }]).to be_an_instance_of(FontFlyweight)
+        expect(subject.fonts[{ font_name: 'foo', font_size: 16, font_style: 'italic' }]).to be_an_instance_of(FontFlyweight)
+      end
     end
 
-    # context 'when the unicode has already been called' do
-    #   let(:character_114) { double('character', :unicode_point => 114) }
-    #   let(:character_115) { double('character', :unicode_point => 115) }
-    #   let(:character_116) { double('character', :unicode_point => 116) }
-    #   it 'should not instantiate the class if its been called already' do
-    #     subject = described_class.new
-    #     expect(CharacterFlyweight).to receive(:new).with(116).and_return(character_116)
-    #     expect(CharacterFlyweight).to receive(:new).with(114).and_return(character_114)
-    #     expect(CharacterFlyweight).to receive(:new).with(115).and_return(character_115)
-    #
-    #
-    #     subject.find_character_of(116)
-    #     subject.find_character_of(114)
-    #     subject.find_character_of(115)
-    #     subject.find_character_of(115)
-    #     subject.find_character_of(115)
-    #     subject.find_character_of(116)
-    #   end
-    # end
+    context 'when the unicode has already been called' do
+      let(:font_1) { double('font', :unicode_point => 114) }
+      let(:font_2) { double('font', :unicode_point => 115) }
+      let(:font_3) { double('font', :unicode_point => 116) }
+
+      it 'should not instantiate the class if its been called already' do
+        subject = described_class.new
+        expect(FontFlyweight).to receive(:new).once.with('foo', 10, 'bold').and_return(font_1)
+        expect(FontFlyweight).to receive(:new).once.with('bar', 12, nil).and_return(font_2)
+        expect(FontFlyweight).to receive(:new).once.with('foo', 16, 'italic').and_return(font_3)
+
+        subject.get_font_for('foo', 10, 'bold')
+        subject.get_font_for('bar', 12,)
+        subject.get_font_for('foo', 16, 'italic')
+        subject.get_font_for('foo', 16, 'italic')
+        subject.get_font_for('bar', 12,)
+        subject.get_font_for('foo', 10, 'bold')
+      end
+    end
   end
 end

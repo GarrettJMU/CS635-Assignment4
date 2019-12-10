@@ -38,9 +38,9 @@ RSpec.describe CharacterFlyweightFactory do
       let(:character_116) { double('character', :unicode_point => 116) }
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
-        expect(CharacterFlyweight).to receive(:new).with(116).and_return(character_116)
-        expect(CharacterFlyweight).to receive(:new).with(114).and_return(character_114)
-        expect(CharacterFlyweight).to receive(:new).with(115).and_return(character_115)
+        expect(CharacterFlyweight).to receive(:new).once.with(116).and_return(character_116)
+        expect(CharacterFlyweight).to receive(:new).once.with(114).and_return(character_114)
+        expect(CharacterFlyweight).to receive(:new).once.with(115).and_return(character_115)
 
 
         subject.find_character_of(116)

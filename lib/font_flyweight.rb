@@ -1,4 +1,3 @@
-# require ''
 class FontFlyweight
   attr_reader :font_name, :font_size, :font_style
 

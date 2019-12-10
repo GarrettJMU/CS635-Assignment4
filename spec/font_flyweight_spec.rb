@@ -18,11 +18,4 @@ RSpec.describe FontFlyweight do
       expect(subject.font_style).to eq(nil)
     end
   end
-
-  describe '#get_font' do
-    it 'should return the font' do
-      subject = described_class.new('times new roman', 12, 'bold')
-      expect(subject.get_font).to eq({})
-    end
-  end
 end

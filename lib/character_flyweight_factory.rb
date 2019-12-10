@@ -11,9 +11,8 @@ class CharacterFlyweightFactory
     if unicodes.key?(unicode)
       character = unicodes[unicode]
     else
-      flyweight = CharacterFlyweight.new(unicode)
-      character = flyweight.find_character
-      unicodes[flyweight.unicode_point] = character
+      character = CharacterFlyweight.new(unicode)
+      unicodes[unicode] = character
     end
 
     character

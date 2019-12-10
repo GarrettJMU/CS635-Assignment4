@@ -4,8 +4,4 @@ class CharacterFlyweight
   def initialize(unicode_point)
     @unicode_point = unicode_point
   end
-
-  def find_character
-    unicode_point.chr
-  end
 end

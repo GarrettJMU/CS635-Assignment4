@@ -7,7 +7,7 @@ class CharacterFlyweightFactory
     @unicodes = {}
   end
 
-  def find_character_of(unicode)
+  def get_character_for(unicode)
     if unicodes.key?(unicode)
       character = unicodes[unicode]
     else

@@ -11,19 +11,19 @@ RSpec.describe CharacterFlyweightFactory do
     end
   end
 
-  describe '#find_character_of' do
+  describe '#get_character_for' do
     context 'when the unicode has not already been called' do
       it 'should create a new key in the class unicodes' do
         subject = described_class.new
-        subject.find_character_of(116)
+        subject.get_character_for(116)
         expect(subject.unicodes.keys).to eq([116])
       end
 
       it 'should add more to the key value pair' do
         subject = described_class.new
-        subject.find_character_of(116)
-        subject.find_character_of(114)
-        subject.find_character_of(115)
+        subject.get_character_for(116)
+        subject.get_character_for(114)
+        subject.get_character_for(115)
 
         expect(subject.unicodes.keys).to eq([116, 114, 115])
         expect(subject.unicodes[116]).to be_an_instance_of(CharacterFlyweight)
@@ -43,12 +43,12 @@ RSpec.describe CharacterFlyweightFactory do
         expect(CharacterFlyweight).to receive(:new).once.with(115).and_return(character_115)
 
 
-        subject.find_character_of(116)
-        subject.find_character_of(114)
-        subject.find_character_of(115)
-        subject.find_character_of(115)
-        subject.find_character_of(115)
-        subject.find_character_of(116)
+        subject.get_character_for(116)
+        subject.get_character_for(114)
+        subject.get_character_for(115)
+        subject.get_character_for(115)
+        subject.get_character_for(115)
+        subject.get_character_for(116)
       end
     end
   end

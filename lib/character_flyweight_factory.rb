@@ -1,4 +1,4 @@
-require_relative('./character_flyweight')
+require_relative './character_flyweight'
 
 class CharacterFlyweightFactory
   attr_accessor :unicodes

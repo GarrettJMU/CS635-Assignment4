@@ -25,7 +25,7 @@ RSpec.describe CharacterFlyweightFactory do
         subject.find_character_of(114)
         subject.find_character_of(115)
 
-        expect(subject.unicodes.keys).to eq([116,114,115])
+        expect(subject.unicodes.keys).to eq([116, 114, 115])
         expect(subject.unicodes[116]).to be_an_instance_of(CharacterFlyweight)
         expect(subject.unicodes[114]).to be_an_instance_of(CharacterFlyweight)
         expect(subject.unicodes[115]).to be_an_instance_of(CharacterFlyweight)
@@ -33,9 +33,9 @@ RSpec.describe CharacterFlyweightFactory do
     end
 
     context 'when the unicode has already been called' do
-      let(:character_114) { double('character', :unicode_point => 114, :find_character => 'r') }
-      let(:character_115) { double('character', :unicode_point => 115, :find_character => 's') }
-      let(:character_116) { double('character', :unicode_point => 116, :find_character => 't') }
+      let(:character_114) { double('character', :unicode_point => 114) }
+      let(:character_115) { double('character', :unicode_point => 115) }
+      let(:character_116) { double('character', :unicode_point => 116) }
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
         expect(CharacterFlyweight).to receive(:new).with(116).and_return(character_116)

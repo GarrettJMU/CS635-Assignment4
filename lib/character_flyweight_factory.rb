@@ -1,6 +1,9 @@
 require_relative './character'
+require 'singleton'
 
 class CharacterFlyweightFactory
+  include Singleton
+
   attr_accessor :unicodes
 
   def initialize

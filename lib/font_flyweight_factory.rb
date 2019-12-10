@@ -1,6 +1,9 @@
 require_relative './font'
+require 'singleton'
 
 class FontFlyweightFactory
+  include Singleton
+
   attr_reader :fonts
 
   def initialize

@@ -1,18 +1,22 @@
 require_relative './character_flyweight_factory'
 require_relative './font_flyweight_factory'
+require 'singleton'
 
 class CharacterAndFontFlyweightFactory
+  include Singleton
+
   attr_accessor :font_and_characters
   attr_reader :character_flyweight_factory, :font_flyweight_factory
 
   def initialize
     @font_and_characters = {}
-    @character_flyweight_factory = CharacterFlyweightFactory.new
-    @font_flyweight_factory = FontFlyweightFactory.new
+    @character_flyweight_factory = CharacterFlyweightFactory.instance
+    @font_flyweight_factory = FontFlyweightFactory.instance
   end
 
   def get_object_for(font, unicode)
     key = { character: unicode, font: font }
+
     if font_and_characters.key?(key)
       character_and_font_pair = font_and_characters[key]
     else

@@ -15,7 +15,11 @@ RSpec.describe WordProcessor do
 
   describe '#generate_random_unicode_point_array' do
     it 'should set the values to only be between 97 and 122' do
-
+      subject = described_class.new
+      subject.unicode_values = subject.generate_random_unicode_point_array(1000)
+      subject.unicode_values.each do |unicode_value|
+        expect(unicode_value).to be_between(97,122)
+      end
     end
 
     it 'should keep creating new array sets if we want' do

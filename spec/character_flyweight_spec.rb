@@ -5,7 +5,7 @@ RSpec.describe CharacterFlyweight do
   describe '#initialize' do
     it 'should accept the unicode as a class variable' do
       subject = described_class.new('foo')
-      expect(subject.unicode).to eq('foo')
+      expect(subject.unicode_point).to eq('foo')
     end
   end
 

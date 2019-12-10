@@ -1,7 +1,15 @@
-class WordProcessor
-  attr_reader :font_factory
+require_relative('./character_flyweight_factory')
+require_relative('./font_flyweight_factory')
 
-  def initialize(font_factory = FontFlyweightFactory.new)
-    @font_factory = font_factory
+class WordProcessor
+  attr_reader :font_factory, :character_factory
+
+  def initialize
+    @font_factory = FontFlyweightFactory.new
+    @character_factory = CharacterFlyweightFactory.new
+  end
+
+  def calculate_size_for(strategy)
+    strategy.calculate_stats
   end
 end

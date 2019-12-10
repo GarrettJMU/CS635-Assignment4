@@ -1,5 +1,6 @@
 require 'spec_helper'
 require_relative '../lib/character_flyweight_factory'
+require_relative '../lib/character_flyweight'
 
 RSpec.describe CharacterFlyweightFactory do
 
@@ -25,7 +26,9 @@ RSpec.describe CharacterFlyweightFactory do
         subject.find_character_of(115)
 
         expect(subject.unicodes.keys).to eq([116,114,115])
-        # expect(subject.unicodes).to eq({ 114 => 'r', 115 => 's', 116 => 't' })
+        expect(subject.unicodes[116]).to be_an_instance_of(CharacterFlyweight)
+        expect(subject.unicodes[114]).to be_an_instance_of(CharacterFlyweight)
+        expect(subject.unicodes[115]).to be_an_instance_of(CharacterFlyweight)
       end
     end
 

@@ -13,6 +13,11 @@ RSpec.describe WordProcessor do
     end
   end
 
+  describe '#calculate_size_for' do
+    subject = described_class.new
+    expect(subject.calculate_size_for).to eq({})
+  end
+
   describe '#generate_random_unicode_point_array' do
     it 'should set the values to only be between 97 and 122' do
       subject = described_class.new

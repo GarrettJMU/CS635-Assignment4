@@ -11,7 +11,7 @@ class WordProcessor
     @unicode_values = generate_random_unicode_point_array(200)
   end
 
-  def calculate_size_for(strategy)
+  def calculate_size_for
     report = MemoryProfiler.report do
       strategy.calculate_stats(run_array, unicode_values)
     end

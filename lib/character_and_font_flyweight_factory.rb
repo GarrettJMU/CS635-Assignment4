@@ -11,7 +11,7 @@ class CharacterAndFontFlyweightFactory
     @font_factory = FontFlyweightFactory.new
   end
 
-  def get_object_for(unicode, font)
+  def get_object_for(font, unicode)
     key = { character: unicode, font: font }
     if font_and_characters.key?(key)
       character_and_font_pair = font_and_characters[key]

@@ -21,17 +21,17 @@ RSpec.describe CharacterAndFontFlyweightFactory do
 
   describe '#get_object_for' do
     context 'when the pair has not already been called' do
-      it 'should create a new key in the class unicodes' do
+      it 'should create a new key in the class font_and_chars' do
         subject = described_class.new
-        subject.get_object_for(116, font_1)
+        subject.get_object_for(font_1, 116 )
         expect(subject.font_and_characters.keys).to eq([{ character: 116, font: font_1 }])
       end
 
       it 'should add more to the key value pair' do
         subject = described_class.new
-        subject.get_object_for(116, font_1)
-        subject.get_object_for(117, font_2)
-        subject.get_object_for(118, font_3)
+        subject.get_object_for(font_1, 116 )
+        subject.get_object_for(font_2, 117 )
+        subject.get_object_for(font_3, 118 )
 
         expect(subject.font_and_characters.keys).to eq([
                                                          { character: 116, font: font_1 },
@@ -58,12 +58,12 @@ RSpec.describe CharacterAndFontFlyweightFactory do
         expect(subject.character_factory).to receive(:get_character_for).once.with(114).and_return(character_116)
         expect(subject.character_factory).to receive(:get_character_for).once.with(115).and_return(character_116)
 
-        subject.get_object_for(116, font_1)
-        subject.get_object_for(114, font_1)
-        subject.get_object_for(115, font_1)
-        subject.get_object_for(115, font_1)
-        subject.get_object_for(115, font_1)
-        subject.get_object_for(116, font_1)
+        subject.get_object_for(font_1,114)
+        subject.get_object_for(font_1,114)
+        subject.get_object_for(font_1,115)
+        subject.get_object_for(font_1,115)
+        subject.get_object_for(font_1,116)
+        subject.get_object_for(font_1,116)
       end
     end
 
@@ -79,12 +79,12 @@ RSpec.describe CharacterAndFontFlyweightFactory do
         expect(subject.font_factory).to receive(:get_font_for).once.with(font_3[:font_name], font_3[:font_size], font_3[:font_style]).and_return(font_3_obj)
 
 
-        subject.get_object_for(114, font_1)
-        subject.get_object_for(114, font_1)
-        subject.get_object_for(114, font_2)
-        subject.get_object_for(114, font_2)
-        subject.get_object_for(114, font_3)
-        subject.get_object_for(114, font_3)
+        subject.get_object_for(font_1,114)
+        subject.get_object_for(font_1,114)
+        subject.get_object_for(font_2,114)
+        subject.get_object_for(font_2,114)
+        subject.get_object_for(font_3,114)
+        subject.get_object_for(font_3,114)
       end
     end
   end

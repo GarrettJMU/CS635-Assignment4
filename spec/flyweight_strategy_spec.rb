@@ -4,21 +4,20 @@ require_relative '../lib/character_flyweight_factory'
 require_relative '../lib/character'
 require_relative '../lib/font_flyweight_factory'
 require_relative '../lib/font'
+require_relative '../lib/character_and_font_flyweight_factory'
 
 RSpec.describe FlyweightStrategy do
   describe '#initalize' do
     it 'should raise an error' do
       subject = described_class.new
-      expect(subject.character_factory).to be_an_instance_of(CharacterFlyweightFactory)
-      expect(subject.font_factory).to be_an_instance_of(FontFlyweightFactory)
+      expect(subject.character_and_font_flyweight_factory).to be_an_instance_of(CharacterAndFontFlyweightFactory)
     end
   end
 
   describe '#get_object_for' do
     it 'should call the correct classes with correct args' do
       subject = described_class.new
-      expect(subject.character_factory).to receive(:get_character_for).with(116)
-      expect(subject.font_factory).to receive(:get_font_for).with('font', 10, nil)
+      expect(subject.character_and_font_flyweight_factory).to receive(:get_object_for).with({ font_name: 'font', font_size: 10, font_style: nil }, 116)
 
       subject.get_object_for({ font_name: 'font', font_size: 10, font_style: nil }, 116)
     end

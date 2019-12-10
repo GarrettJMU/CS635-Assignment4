@@ -1,6 +1,6 @@
 require 'spec_helper'
 require_relative '../lib/character_flyweight_factory'
-require_relative '../lib/character_flyweight'
+require_relative '../lib/character'
 
 RSpec.describe CharacterFlyweightFactory do
 
@@ -26,9 +26,9 @@ RSpec.describe CharacterFlyweightFactory do
         subject.get_character_for(115)
 
         expect(subject.unicodes.keys).to eq([116, 114, 115])
-        expect(subject.unicodes[116]).to be_an_instance_of(CharacterFlyweight)
-        expect(subject.unicodes[114]).to be_an_instance_of(CharacterFlyweight)
-        expect(subject.unicodes[115]).to be_an_instance_of(CharacterFlyweight)
+        expect(subject.unicodes[116]).to be_an_instance_of(Character)
+        expect(subject.unicodes[114]).to be_an_instance_of(Character)
+        expect(subject.unicodes[115]).to be_an_instance_of(Character)
       end
     end
 
@@ -38,9 +38,9 @@ RSpec.describe CharacterFlyweightFactory do
       let(:character_116) { double('character', :unicode_point => 116) }
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
-        expect(CharacterFlyweight).to receive(:new).once.with(116).and_return(character_116)
-        expect(CharacterFlyweight).to receive(:new).once.with(114).and_return(character_114)
-        expect(CharacterFlyweight).to receive(:new).once.with(115).and_return(character_115)
+        expect(Character).to receive(:new).once.with(116).and_return(character_116)
+        expect(Character).to receive(:new).once.with(114).and_return(character_114)
+        expect(Character).to receive(:new).once.with(115).and_return(character_115)
 
 
         subject.get_character_for(116)

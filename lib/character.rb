@@ -1,4 +1,4 @@
-class CharacterFlyweight
+class Character
   attr_reader :unicode_point
 
   def initialize(unicode_point)

@@ -1,4 +1,4 @@
-class FontFlyweight
+class Font
   attr_reader :font_name, :font_size, :font_style
 
   def initialize(font_name, font_size, font_style = nil)

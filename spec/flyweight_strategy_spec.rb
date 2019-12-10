@@ -1,9 +1,9 @@
 require 'spec_helper'
 require_relative '../lib/flyweight_strategy'
 require_relative '../lib/character_flyweight_factory'
-require_relative '../lib/character_flyweight'
+require_relative '../lib/character'
 require_relative '../lib/font_flyweight_factory'
-require_relative '../lib/font_flyweight'
+require_relative '../lib/font'
 
 RSpec.describe FlyweightStrategy do
   describe '#initalize' do
@@ -26,8 +26,8 @@ RSpec.describe FlyweightStrategy do
     it 'should return the proper classes' do
       subject = described_class.new
       get_object = subject.get_object_for({ font_name: 'font', font_size: 10, font_style: nil }, 116)
-      expect(get_object[:font]).to be_an_instance_of(FontFlyweight)
-      expect(get_object[:character]).to be_an_instance_of(CharacterFlyweight)
+      expect(get_object[:font]).to be_an_instance_of(Font)
+      expect(get_object[:character]).to be_an_instance_of(Character)
     end
   end
 end

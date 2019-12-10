@@ -1,7 +1,7 @@
 require 'spec_helper'
-require_relative '../lib/font_flyweight'
+require_relative '../lib/font'
 
-RSpec.describe FontFlyweight do
+RSpec.describe Font do
   describe '#initialize' do
     it 'should set all instance variables correctly' do
       subject = described_class.new('times new roman', 12, 'bold')

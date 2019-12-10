@@ -1,4 +1,4 @@
-require_relative './character_flyweight'
+require_relative './character'
 
 class CharacterFlyweightFactory
   attr_accessor :unicodes
@@ -11,7 +11,7 @@ class CharacterFlyweightFactory
     if unicodes.key?(unicode)
       character = unicodes[unicode]
     else
-      character = CharacterFlyweight.new(unicode)
+      character = Character.new(unicode)
       unicodes[unicode] = character
     end
 

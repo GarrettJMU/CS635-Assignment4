@@ -1,6 +1,6 @@
 require 'spec_helper'
 require_relative '../lib/font_flyweight_factory'
-require_relative '../lib/font_flyweight'
+require_relative '../lib/font'
 
 RSpec.describe FontFlyweightFactory do
 
@@ -36,9 +36,9 @@ RSpec.describe FontFlyweightFactory do
                                            { font_name: 'bar', font_size: 12, font_style: nil },
                                            { font_name: 'foo', font_size: 16, font_style: 'italic' }
                                          ])
-        expect(subject.fonts[{ font_name: 'foo', font_size: 10, font_style: 'bold' }]).to be_an_instance_of(FontFlyweight)
-        expect(subject.fonts[{ font_name: 'bar', font_size: 12, font_style: nil }]).to be_an_instance_of(FontFlyweight)
-        expect(subject.fonts[{ font_name: 'foo', font_size: 16, font_style: 'italic' }]).to be_an_instance_of(FontFlyweight)
+        expect(subject.fonts[{ font_name: 'foo', font_size: 10, font_style: 'bold' }]).to be_an_instance_of(Font)
+        expect(subject.fonts[{ font_name: 'bar', font_size: 12, font_style: nil }]).to be_an_instance_of(Font)
+        expect(subject.fonts[{ font_name: 'foo', font_size: 16, font_style: 'italic' }]).to be_an_instance_of(Font)
       end
     end
 
@@ -49,9 +49,9 @@ RSpec.describe FontFlyweightFactory do
 
       it 'should not instantiate the class if its been called already' do
         subject = described_class.new
-        expect(FontFlyweight).to receive(:new).once.with('foo', 10, 'bold').and_return(font_1)
-        expect(FontFlyweight).to receive(:new).once.with('bar', 12, nil).and_return(font_2)
-        expect(FontFlyweight).to receive(:new).once.with('foo', 16, 'italic').and_return(font_3)
+        expect(Font).to receive(:new).once.with('foo', 10, 'bold').and_return(font_1)
+        expect(Font).to receive(:new).once.with('bar', 12, nil).and_return(font_2)
+        expect(Font).to receive(:new).once.with('foo', 16, 'italic').and_return(font_3)
 
         subject.get_font_for('foo', 10, 'bold')
         subject.get_font_for('bar', 12,)

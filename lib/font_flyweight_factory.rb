@@ -11,7 +11,7 @@ class FontFlyweightFactory
     if fonts.key?(font_args)
       font = fonts[font_args]
     else
-      font = FontFlyweight.new(font_name, font_size, font_style)
+      font = Font.new(font_name, font_size, font_style)
       fonts[font_args] = font
     end
 

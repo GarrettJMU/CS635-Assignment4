@@ -13,9 +13,9 @@ RSpec.describe WordProcessor do
     end
   end
 
-  describe '#calculate_size_for' do
+  describe '#calculate_size' do
     subject = described_class.new
-    expect(subject.calculate_size_for).to eq({})
+    expect(subject.calculate_size).to eq({})
   end
 
   describe '#generate_random_unicode_point_array' do

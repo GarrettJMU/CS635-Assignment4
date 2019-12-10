@@ -10,15 +10,10 @@ class FlyweightStrategy < Strategy
     @character_factory = CharacterFlyweightFactory.new
   end
 
-  def calculate_stats(run_array, unicode_values)
-    object_to_return = []
-
-    unicode_values.each_with_index do |unicode_value, index|
-      font = run_array.get_font_for_index(index)
-      unicode = character_factory.find_character_of(unicode_value)
-      object_to_return.push({ font: font_factory.get_font_for(font), unicode: unicode })
-    end
-
-    object_to_return
+  def get_object_for(font, unicode_value)
+    {
+      font: font_factory.get_font_for(font),
+      unicode: character_factory.get_character_for(unicode_value)
+    }
   end
 end

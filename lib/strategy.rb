@@ -1,5 +1,5 @@
 class Strategy
-  def calculate_stats(*)
+  def get_object_for(*)
     raise NotImplementedError, "Not implemented"
   end
 end

@@ -11,9 +11,17 @@ class WordProcessor
     @unicode_values = generate_random_unicode_point_array(200)
   end
 
-  def calculate_size_for
+  def calculate_size
+    object_to_analyze = []
+
+    unicode_values.each_with_index do |unicode_value, index|
+      font_character_object = strategy.get_object_for(run_array.get_font_for_index(index), unicode_value)
+
+      object_to_analyze.push(font_character_object)
+    end
+
     report = MemoryProfiler.report do
-      strategy.calculate_stats(run_array, unicode_values)
+      object_to_analyze
     end
 
     report.pretty_print

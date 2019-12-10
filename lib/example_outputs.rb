@@ -24,6 +24,8 @@ wp.calculate_size
 
 
 #################################################################################################################
+
+
 # Medium
 wp.unicode_values = 2000.times.map do
   rand(97..122)
@@ -42,6 +44,9 @@ wp.calculate_size
 # Total retained:  624000 bytes (6000 objects)
 
 
+#################################################################################################################
+
+
 # Large
 wp.unicode_values = 20000.times.map do
   rand(97..122)
@@ -57,6 +62,9 @@ wp.strategy = NonFlyweightStrategy.new
 wp.calculate_size
 # Total allocated: 6240000 bytes (60000 objects)
 # Total retained:  6240000 bytes (60000 objects)
+
+
+#################################################################################################################
 
 
 # Extra Large

@@ -1,17 +1,15 @@
 require_relative './strategy'
+require_relative './font_flyweight'
+require_relative './character_flyweight'
 
 class NonFlyweightStrategy < Strategy
-  def calculate_stats(run_array, unicode_values)
-    object_to_return = []
-
-    unicode_values.each_with_index do |unicode_value, index|
-      current_font = run_array.get_font_for_index(index)
-
-      unicode = CharacterFlyweight.new(unicode_value)
-      # font = FontFlyweight.new(current_font)
-      object_to_return.push({ font: Font.new, unicode: unicode })
-    end
-
-    object_to_return
+  def get_object_for(font, unicode_value)
+    font_name = font[:font_name]
+    font_size = font[:font_size]
+    font_style = font[:font_style]
+    {
+      font: FontFlyweight.new(font_name, font_size, font_style),
+      character: CharacterFlyweight.new(unicode_value)
+    }
   end
 end
